@@ -1,0 +1,74 @@
+<!-- Caitlin Sales 08/20/2023
+HTML for interactive music player -->
+
+<html>
+<head>
+	<title> OSMD Raw Javascript Usage Example </title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://unpkg.com/opensheetmusicdisplay@1.7.2/build/opensheetmusicdisplay.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/hover.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/timeline.min.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.929.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script>
+
+<div id="overlay"></div>
+<div class="header">
+	<div class="fileSelect" id="fileSelectUpload">
+		<div class="switch" style="display: none;">
+			<input type="button" id="uploadSelect" value="Enable Upload">
+		</div>
+		<div id="upload" class="selections disabledbutton" style="display: none;">
+			<div class="changeUpload">
+				<input type="button" id="changeSheet" value="Change Music Sheet">
+				<input type="button" id="changeAudioText" value="Change Audio and TextFile">
+			</div>
+			<label for="files">Select a XML file:</label>
+			<input type="file" id="files">
+			<label for="music">Select a WAV file:</label>
+			<input type="file" id="music">
+			<label for="inputFile">Select a TXT file:</label>
+			<input type="file" id="inputFile">
+		</div>
+		<div id="selectSheet" class="selections">
+			<select id="dropdown_sheet" placeholder="Choose an option">
+				<option value="0" selected disabled hidden>Select a Score</option>
+			</select>
+			<select id="dropdown_music" placeholder="Choose an option">
+				<option value="0" selected disabled hidden>Select a Performance</option>
+			</select>
+		</div>
+	</div>
+	<div class="zoom">
+			Zoom: <input type="button" id="zoom-in" value="&plus;">
+			<input type="button" id="zoom-out" value="&minus;">
+	</div>
+	<div class="cursor">
+		<input type="button" id="show" value="Hide">
+		<input type="button" id="back" value="Back">
+		<input type="button" id="next" value="Next">
+	</div>
+	<div class="audioPlayback">
+		<input type="button" id="pplay" value="Play">
+	</div>
+	<div class="measureEnter">Measure: <input type="text" id="measure-input"  style="width:50px;" placeholder="0" onkeydown="search(this)"/></div>
+</div>
+<div id="osmdCanvas"></div>
+<div id="comments"></div>
+
+<div class="audio">
+	<div id="waveform"></div>
+</div>
+
+<script src="fileSelection.js"></script>
+<script src="audio.js"></script>
+<script src="fileSelectAndLoadOSMD.js"></script>
+<script src="textfile.js"></script>
+
+</body>
+</html>
